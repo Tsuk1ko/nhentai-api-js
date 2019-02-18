@@ -91,6 +91,5 @@ There are what you will get (formatted):
   `nHentaiAPI.character(character: string, page?: number, sort?: string): Promise`  
   `nHentaiAPI.parody(parody: string, page?: number, sort?: string): Promise`  
   `nHentaiAPI.group(group: string, page?: number, sort?: string): Promise`  
-  - `group` — Group name
   - `page` — Page num
   - `sort` — "date" (defalut) or "popular"
