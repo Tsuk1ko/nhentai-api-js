@@ -1,0 +1,28 @@
+{
+  "name": "nhentai-api-js",
+  "version": "1.0.0",
+  "description": "API for nHentai",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tsuk1ko/nhentai-api-js.git"
+  },
+  "keywords": [
+    "nhentai",
+    "api"
+  ],
+  "author": "Jindai Kirin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tsuk1ko/nhentai-api-js/issues"
+  },
+  "homepage": "https://github.com/Tsuk1ko/nhentai-api-js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "qs": "^6.6.0"
+  }
+}
