@@ -23,7 +23,7 @@ There are what you will get (formatted):
 
 ### (1) Doujin details (same as the official original API)
 
-```json
+```javascript
 {
     "id": 263492,
     "media_id": "1367250",
@@ -69,7 +69,7 @@ There are what you will get (formatted):
 }
 ```
 
-### (2) Pages `Array`
+### (2) Pages `string[]`
 
 ```javascript
 [
@@ -81,7 +81,7 @@ There are what you will get (formatted):
 ]
 ```
 
-### (3) Pages thumbnail `Array`
+### (3) Pages thumbnail `string[]`
 
 ```javascript
 [
@@ -93,13 +93,13 @@ There are what you will get (formatted):
 ]
 ```
 
-### (4) Cover `String`
+### (4) Cover `string`
 
 ```
 https://t.nhentai.net/galleries/1367250/cover.png
 ```
 
-### (5) Cover thumbnail `String`
+### (5) Cover thumbnail `string`
 
 ```
 https://t.nhentai.net/galleries/1367250/thumb.png
@@ -107,7 +107,7 @@ https://t.nhentai.net/galleries/1367250/thumb.png
 
 ### (6) Search
 
-```json
+```javascript
 {
     "num_results": 11706,
     "num_pages": 469,
