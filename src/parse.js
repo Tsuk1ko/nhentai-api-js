@@ -2,7 +2,7 @@
  * @Author: Jindai Kirin 
  * @Date: 2019-02-18 14:49:30 
  * @Last Modified by: Jindai Kirin
- * @Last Modified time: 2019-02-18 18:06:10
+ * @Last Modified time: 2019-02-24 13:11:04
  */
 
 const Cheerio = require('cheerio');
@@ -16,7 +16,10 @@ const Qs = require('qs');
  */
 function details(html) {
 	let json = /(?<=gallery\()\{.+\}(?=\);)/.exec(html)[0];
-	return JSON.parse(json);
+	let obj = JSON.parse(json);
+	// For consistency such as https://nhentai.net/g/66/
+	if (typeof obj.id == 'string') obj.id = parseInt(obj.id);
+	return obj;
 }
 
 /**
@@ -50,8 +53,8 @@ function list(html) {
 				w: $thumb.attr('width'),
 				h: $thumb.attr('height')
 			}
-		})
-	})
+		});
+	});
 
 	let addon = {};
 	if ($('#content>h2').length > 0) addon.num_results = parseInt($('#content>h2').html().replace(',', '')) || 0;
@@ -66,4 +69,4 @@ function list(html) {
 module.exports = {
 	details,
 	list
-}
+};
