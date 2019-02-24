@@ -1,17 +1,27 @@
 # nhentai-api-js
+
 ## Example
+
 ```javascript
 const nHentaiAPI = require('nhentai-api-js');
 let api = new nHentaiAPI();
 
 // Details of https://nhentai.net/g/263492/
-api.g(263492).then(data => console.log(JSON.stringify(data)));
+api.g(263492).then(gallery => {
+    console.log(JSON.stringify(gallery));     // (1)
+    console.log(gallery.getPages());          // (2)
+    console.log(gallery.getPagesThumbnail()); // (3)
+    console.log(gallery.getCover());          // (4)
+    console.log(gallery.getCoverThumbnail()); // (5)
+});
 
 // Search "艦隊これくしょん"
-api.search('艦隊これくしょん').then(data => console.log(JSON.stringify(data)));
+api.search('艦隊これくしょん').then(data => console.log(JSON.stringify(data))); // (6)
 ```
 
 There are what you will get (formatted):
+
+### (1) Doujin details (same as the official original API)
 
 ```json
 {
@@ -59,6 +69,44 @@ There are what you will get (formatted):
 }
 ```
 
+### (2) Pages `Array`
+
+```javascript
+[
+    'https://i.nhentai.net/galleries/1367250/1.png',
+    'https://i.nhentai.net/galleries/1367250/2.png',
+    'https://i.nhentai.net/galleries/1367250/3.png',
+    ...
+    'https://i.nhentai.net/galleries/1367250/24.png'
+]
+```
+
+### (3) Pages thumbnail `Array`
+
+```javascript
+[
+    'https://t.nhentai.net/galleries/1367250/1t.png',
+    'https://t.nhentai.net/galleries/1367250/2t.png',
+    'https://t.nhentai.net/galleries/1367250/3t.png',
+    ...
+    'https://t.nhentai.net/galleries/1367250/24t.png'
+]
+```
+
+### (4) Cover `String`
+
+```
+https://t.nhentai.net/galleries/1367250/cover.png
+```
+
+### (5) Cover thumbnail `String`
+
+```
+https://t.nhentai.net/galleries/1367250/thumb.png
+```
+
+### (6) Search
+
 ```json
 {
     "num_results": 11706,
@@ -80,16 +128,34 @@ There are what you will get (formatted):
 ```
 
 ## APIs
-- `nHentaiAPI.g(id: string | number): Promise` — Get doujin details
+
+### nHentaiAPI
+
+- `constructor nHentaiAPI(baseURL?: string): nHentaiAPI`
+  - `baseURL` — Default is `'https://nhentai.net'`
+- `nHentaiAPI.g(id: string | number): Promise<nHentaiGallery>` — Get doujin details
   - `id` — Gallery ID
 - `nHentaiAPI.homepage(page?: number): Promise` — Get doujin list from homepage
   - `page` — Page num
 - `nHentaiAPI.random(): Promise` — Get a random doujin
 - `nHentaiAPI.search(keyword: string, page?: number, sort?: string): Promise`  
-  `nHentaiAPI.tag(tag: string, page?: number, sort?: string): Promise`  
-  `nHentaiAPI.artist(artist: string, page?: number, sort?: string): Promise`  
-  `nHentaiAPI.character(character: string, page?: number, sort?: string): Promise`  
-  `nHentaiAPI.parody(parody: string, page?: number, sort?: string): Promise`  
-  `nHentaiAPI.group(group: string, page?: number, sort?: string): Promise`  
-  - `page` — Page num
-  - `sort` — "date" (defalut) or "popular"
+  - `keyword` — Keyword [(learn more)](https://nhentai.net/info/)
+  - `page` — Page num (default is `1`)
+  - `sort` — `'date'` (default) or `'popular'`
+- `nHentaiAPI.tag(name: string, page?: number, sort?: string): Promise`  
+  `nHentaiAPI.artist`  
+  `nHentaiAPI.character`  
+  `nHentaiAPI.parody`  
+  `nHentaiAPI.group`
+  - `name` — Name of tag / artist / character / parody / group
+  - `page` — Page num (default is `1`)
+  - `sort` — `'date'` (default) or `'popular'`
+
+### nHentaiGallery
+
+- `nHentaiGallery.getPages(baseURL?: string): string[]` — Get a URL list of pages
+  - `baseURL` — Default is `'https://i.nhentai.net'`
+- `nHentaiGallery.getPagesThumbnail(baseURL?: string): string[]` — Get a URL list of pages thumbnail  
+  `nHentaiGallery.getCover(baseURL?: string): string` — Get a URL of cover  
+  `nHentaiGallery.getCoverThumbnail(baseURL?: string): string` — Get a URL of cover thumbnail
+  - `baseURL` — Default is `'https://t.nhentai.net'`

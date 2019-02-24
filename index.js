@@ -2,11 +2,12 @@
  * @Author: Jindai Kirin 
  * @Date: 2019-02-18 16:33:33 
  * @Last Modified by: Jindai Kirin
- * @Last Modified time: 2019-02-18 18:15:30
+ * @Last Modified time: 2019-02-24 15:31:59
  */
 
 const getHTML = require('./src/get');
 const Parse = require('./src/parse');
+const nHentaiGallery = require('./src/gallery');
 const Qs = require('qs');
 
 async function parseDetailsHTML(url) {
@@ -42,11 +43,11 @@ class nHentaiAPI {
 	 * Get doujin details
 	 *
 	 * @param {string|number} id Gallery ID
-	 * @returns Doujin details object
+	 * @returns nHentaiGallery object
 	 * @memberof nHentaiAPI
 	 */
-	g(id) {
-		return parseDetailsHTML(`${this.baseURL}/g/${id}/`);
+	async g(id) {
+		return new nHentaiGallery(await parseDetailsHTML(`${this.baseURL}/g/${id}/`));
 	}
 
 	/**
@@ -54,7 +55,7 @@ class nHentaiAPI {
 	 *
 	 * @param {string} keyword Keyword
 	 * @param {number} [page=1] Page num
-	 * @param {string} [sort='date'] "date" (defalut) or "popular"
+	 * @param {string} [sort='date'] "date" (default) or "popular"
 	 * @returns Doujin list object
 	 * @memberof nHentaiAPI
 	 */
@@ -95,81 +96,81 @@ class nHentaiAPI {
 	/**
 	 * Get doujin list by tag
 	 *
-	 * @param {string} tag Tag name
+	 * @param {string} name Tag name
 	 * @param {number} [page=1] Page num
-	 * @param {string} [sort='date'] "date" (defalut) or "popular"
+	 * @param {string} [sort='date'] "date" (default) or "popular"
 	 * @returns Doujin list object
 	 * @memberof nHentaiAPI
 	 */
-	tag(tag, page = 1, sort = 'date') {
+	tag(name, page = 1, sort = 'date') {
 		let query = Qs.stringify({
 			page
 		});
-		return parseListHTML(`${this.baseURL}/tag/${tag.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
+		return parseListHTML(`${this.baseURL}/tag/${name.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
 	}
 
 	/**
 	 * Get doujin list by artist
 	 *
-	 * @param {string} artist Artist name
+	 * @param {string} name Artist name
 	 * @param {number} [page=1] Page num
-	 * @param {string} [sort='date'] "date" (defalut) or "popular"
+	 * @param {string} [sort='date'] "date" (default) or "popular"
 	 * @returns Doujin list object
 	 * @memberof nHentaiAPI
 	 */
-	artist(artist, page = 1, sort = 'date') {
+	artist(name, page = 1, sort = 'date') {
 		let query = Qs.stringify({
 			page
 		});
-		return parseListHTML(`${this.baseURL}/tag/${artist.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
+		return parseListHTML(`${this.baseURL}/tag/${name.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
 	}
 
 	/**
 	 * Get doujin list by character
 	 *
-	 * @param {string} character Character name
+	 * @param {string} name Character name
 	 * @param {number} [page=1] Page num
-	 * @param {string} [sort='date'] "date" (defalut) or "popular"
+	 * @param {string} [sort='date'] "date" (default) or "popular"
 	 * @returns Doujin list object
 	 * @memberof nHentaiAPI
 	 */
-	character(character, page = 1, sort = 'date') {
+	character(name, page = 1, sort = 'date') {
 		let query = Qs.stringify({
 			page
 		});
-		return parseListHTML(`${this.baseURL}/tag/${character.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
+		return parseListHTML(`${this.baseURL}/tag/${name.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
 	}
 
 	/**
 	 * Get doujin list by parody
 	 *
-	 * @param {string} parody Parody name
+	 * @param {string} name Parody name
 	 * @param {number} [page=1] Page num
-	 * @param {string} [sort='date'] "date" (defalut) or "popular"
+	 * @param {string} [sort='date'] "date" (default) or "popular"
 	 * @returns Doujin list object
 	 * @memberof nHentaiAPI
 	 */
-	parody(parody, page = 1, sort = 'date') {
+	parody(name, page = 1, sort = 'date') {
 		let query = Qs.stringify({
 			page
 		});
-		return parseListHTML(`${this.baseURL}/tag/${parody.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
+		return parseListHTML(`${this.baseURL}/tag/${name.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
 	}
 
 	/**
 	 * Get doujin list by group
 	 *
-	 * @param {string} group Group name
+	 * @param {string} name Group name
 	 * @param {number} [page=1] Page num
-	 * @param {string} [sort='date'] "date" (defalut) or "popular"
+	 * @param {string} [sort='date'] "date" (default) or "popular"
 	 * @returns Doujin list object
 	 * @memberof nHentaiAPI
 	 */
-	group(group, page = 1, sort = 'date') {
+	group(name, page = 1, sort = 'date') {
 		let query = Qs.stringify({
 			page
 		});
-		return parseListHTML(`${this.baseURL}/tag/${group.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
+		return parseListHTML(`${this.baseURL}/tag/${name.replace(' ','-')}/${sort=='date'?'':sort}?${query}`);
 	}
 }
 
