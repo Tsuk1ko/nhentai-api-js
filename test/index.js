@@ -14,9 +14,11 @@ async function log(promise) {
 //log(api.tag('anal'));
 //log(api.tag('anal',2,'popular'));
 
-api.g(263492).then(gallery => {
+/*api.g(263492).then(gallery => {
 	console.log(gallery.getPages());
 	console.log(gallery.getPagesThumbnail());
 	console.log(gallery.getCover());
 	console.log(gallery.getCoverThumbnail());
-});
+});*/
+
+log(api.search('[陸乃家鴨] 司法畑でつかまえて♥'));

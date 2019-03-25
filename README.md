@@ -107,6 +107,8 @@ https://t.nhentai.net/galleries/1367250/thumb.png
 
 ### (6) Search
 
+\* Some old doujin may have no `thumbnail.w` and `thumbnail.h`
+
 ```javascript
 {
     "num_results": 11706,

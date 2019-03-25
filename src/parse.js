@@ -2,7 +2,7 @@
  * @Author: Jindai Kirin 
  * @Date: 2019-02-18 14:49:30 
  * @Last Modified by: Jindai Kirin
- * @Last Modified time: 2019-02-24 13:11:04
+ * @Last Modified time: 2019-03-25 18:22:02
  */
 
 const Cheerio = require('cheerio');
@@ -49,7 +49,7 @@ function list(html) {
 			title: $this.find('.caption').html(),
 			language,
 			thumbnail: {
-				s: $thumb.attr('data-src'),
+				s: $thumb.attr('data-src') || $thumb.attr('src').replace(/^\/\//, 'https://'),
 				w: $thumb.attr('width'),
 				h: $thumb.attr('height')
 			}
