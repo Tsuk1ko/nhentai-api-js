@@ -4,9 +4,9 @@
 
 **This is an unofficial API.**
 
-It was developed because [official api has been suspended indefinitely](https://twitter.com/fuckmaou/status/1084550608097603585).
+It was developed because [official API has been suspended indefinitely](https://twitter.com/fuckmaou/status/1084550608097603585).
 
-But now you don't need it anymore, [nhentai API is re-enabled](https://twitter.com/fuckmaou/status/1113868849500303363).
+But now you don't need it anymore, [official API is re-enabled](https://twitter.com/fuckmaou/status/1113868849500303363).
 
 ## Example
 
