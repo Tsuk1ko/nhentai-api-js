@@ -1,12 +1,12 @@
 # nhentai-api-js
 
-## Notice
-
 **This is an unofficial API.**
 
 It was developed because [official API has been suspended indefinitely](https://twitter.com/fuckmaou/status/1084550608097603585).
 
 But now you don't need it anymore, [official API is re-enabled](https://twitter.com/fuckmaou/status/1113868849500303363).
+
+Recommend to use [nhentai-js](https://www.npmjs.com/package/nhentai-js).
 
 ## Example
 
